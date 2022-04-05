@@ -191,87 +191,69 @@ int main () {
     Free_Matrix(matrix_1);
     matrix_1 = Get_Matrix_Random(5, 4, ring_info, error);
     ERROR_OK;
-    Free_Matrix(matrix_res);
-    matrix_res = ring_info->Mult_Matrix_by_Scalar(matrix_1, ((void*)&scalar_i), error);
+    matrix_1 = ring_info->Mult_Matrix_by_Scalar(matrix_1, ((void*)&scalar_i), error);
     ERROR_OK;
 
     printf("\tMatrix 1: \n");
     Matrix_Print(matrix_1, ring_info);
-    printf("\tResult: \n"); 
-    Matrix_Print(matrix_res, ring_info);
 
     printf("Test 2.\n");
     scalar_i = 10;
     Free_Matrix(matrix_1);
     matrix_1 = Get_Matrix_Random(5, 4, ring_info, error);
     ERROR_OK;
-    Free_Matrix(matrix_res);
-    matrix_res = ring_info->Mult_Matrix_by_Scalar(matrix_1, ((void*)&scalar_i), error);
+    matrix_1 = ring_info->Mult_Matrix_by_Scalar(matrix_1, ((void*)&scalar_i), error);
     ERROR_OK; 
     
     printf("\tMatrix 1: \n");
     Matrix_Print(matrix_1, ring_info);
-    printf("\tResult: \n"); 
-    Matrix_Print(matrix_res, ring_info);
 
     printf("Test 3.\n");
     scalar_i = -1;
     Free_Matrix(matrix_1);
     matrix_1 = Get_Matrix_Random(5, 4, ring_info, error);
     ERROR_OK;
-    Free_Matrix(matrix_res);
-    matrix_res = ring_info->Mult_Matrix_by_Scalar(matrix_1, ((void*)&scalar_i), error);
+    matrix_1 = ring_info->Mult_Matrix_by_Scalar(matrix_1, ((void*)&scalar_i), error);
     ERROR_OK; 
     
     printf("\tMatrix 1: \n");
     Matrix_Print(matrix_1, ring_info);
-    printf("\tResult: \n"); 
-    Matrix_Print(matrix_res, ring_info);
 
     printf("\nTest Double of type.\n");
     ring_info_f;
 
     printf("Test 1.\n");
-    double scalar_f = 0.0;
+    double scalar_f = 0;
     Free_Matrix(matrix_1);
     matrix_1 = Get_Matrix_Random(5, 4, ring_info, error);
     ERROR_OK;
-    Free_Matrix(matrix_res);
-    matrix_res = ring_info->Mult_Matrix_by_Scalar(matrix_1, ((void*)&scalar_i), error);
+    matrix_1 = ring_info->Mult_Matrix_by_Scalar(matrix_1, ((void*)&scalar_f), error);
     ERROR_OK; 
     
     printf("\tMatrix 1: \n");
     Matrix_Print(matrix_1, ring_info);
-    printf("\tResult: \n"); 
-    Matrix_Print(matrix_res, ring_info);
 
     printf("Test 2.\n");
-    scalar_f = 10.0;
+    scalar_f = 10;
     Free_Matrix(matrix_1);
     matrix_1 = Get_Matrix_Random(5, 4, ring_info, error);
     ERROR_OK;
-    Free_Matrix(matrix_res);
-    matrix_res = ring_info->Mult_Matrix_by_Scalar(matrix_1, ((void*)&scalar_i), error);
+    matrix_1 = ring_info->Mult_Matrix_by_Scalar(matrix_1, ((void*)&scalar_f), error);
     ERROR_OK; 
     
     printf("\tMatrix 1: \n");
     Matrix_Print(matrix_1, ring_info);
-    printf("\tResult: \n"); 
-    Matrix_Print(matrix_res, ring_info);
 
     printf("Test 3.\n");
-    scalar_f = -1.0;
+    scalar_f = -1;
     Free_Matrix(matrix_1);
     matrix_1 = Get_Matrix_Random(5, 4, ring_info, error);
     ERROR_OK;
-    Free_Matrix(matrix_res);
-    matrix_res = ring_info->Mult_Matrix_by_Scalar(matrix_1, ((void*)&scalar_i), error);
+    matrix_1 = ring_info->Mult_Matrix_by_Scalar(matrix_1, ((void*)&scalar_f), error);
     ERROR_OK; 
     
     printf("\tMatrix 1: \n");
     Matrix_Print(matrix_1, ring_info);
-    printf("\tResult: \n"); 
-    Matrix_Print(matrix_res, ring_info);
 
     // Transp Matrix
     printf("______________________________________________________________________________\n");
@@ -281,7 +263,7 @@ int main () {
 
     printf("Test 1.\n");
     Free_Matrix(matrix_1);
-    matrix_1 = Get_Matrix_Zero(5, 4, ring_info, error);
+    matrix_1 = Get_Matrix_One(5, 4, ring_info, error);
     ERROR_OK;
     Free_Matrix(matrix_res);
     matrix_res = ring_info->Transp_Matrix(matrix_1, error);
@@ -310,7 +292,7 @@ int main () {
 
     printf("Test 1.\n");
     Free_Matrix(matrix_1);
-    matrix_1 = Get_Matrix_Zero(5, 4, ring_info, error);
+    matrix_1 = Get_Matrix_One(5, 4, ring_info, error);
     ERROR_OK;
     Free_Matrix(matrix_res);
     matrix_res = ring_info->Transp_Matrix(matrix_1, error);
