@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <sys/types.h>
 #include <time.h>
 
@@ -316,19 +317,147 @@ int main () {
     printf("\tResult: \n"); 
     Matrix_Print(matrix_res, ring_info);
 
-    /*/ Line_Comb
+    // Line_Comb
     printf("______________________________________________________________________________\n");
-    printf("\nTransp Matrix.\n");
+    printf("\nLine Comb.\n");
     printf("\nTest Int of type.\n");
     ring_info_i;
-*/
-
-
-
-
-
-
-
     
+    printf("Test 1.\n");
+    Free_Matrix(matrix_1);
+    matrix_1 = Get_Matrix_One(5, 4, ring_info, error);
+    ERROR_OK;
+    LineComb* scalar;
+    scalar = (LineComb*)malloc(sizeof(LineComb));
+    scalar->scalar = (void*)malloc(sizeof(int)*4);
+    scalar->scalar_number = 0;
+    for (int i = 0; i < 4; i++){
+        ((int*)scalar->scalar)[i] = 1;
+    }
+    
+    Free_Matrix(matrix_res);
+    matrix_res = ring_info->Line_Comb(matrix_1, scalar, error);
+    ERROR_OK;
+
+    printf("\tMatrix 1: \n");
+    Matrix_Print(matrix_1, ring_info);
+    printf("\tResult: \n"); 
+    Matrix_Print(matrix_res, ring_info);
+    free(scalar->scalar);
+    free(scalar);
+
+    printf("Test 2.\n");
+    Free_Matrix(matrix_1);
+    matrix_1 = Get_Matrix_One(5, 4, ring_info, error);
+    ERROR_OK;
+    scalar = (LineComb*)malloc(sizeof(LineComb));
+    scalar->scalar = (void*)malloc(sizeof(int)*4);
+    scalar->scalar_number = 1;
+    for (int i = 0; i < 4; i++){
+        ((int*)scalar->scalar)[i] = 10;
+    }
+    
+    Free_Matrix(matrix_res);
+    matrix_res = ring_info->Line_Comb(matrix_1, scalar, error);
+    ERROR_OK;
+
+    printf("\tMatrix 1: \n");
+    Matrix_Print(matrix_1, ring_info);
+    printf("\tResult: \n"); 
+    Matrix_Print(matrix_res, ring_info);
+    free(scalar->scalar);
+    free(scalar);
+
+    printf("Test 3.\n");
+    Free_Matrix(matrix_1);
+    matrix_1 = Get_Matrix_One(5, 4, ring_info, error);
+    ERROR_OK;
+    scalar = (LineComb*)malloc(sizeof(LineComb));
+    scalar->scalar = (void*)malloc(sizeof(int)*4);
+    scalar->scalar_number = 3;
+    for (int i = 0; i < 4; i++){
+        ((int*)scalar->scalar)[i] = -1;
+    }
+    
+    Free_Matrix(matrix_res);
+    matrix_res = ring_info->Line_Comb(matrix_1, scalar, error);
+    ERROR_OK;
+
+    printf("\tMatrix 1: \n");
+    Matrix_Print(matrix_1, ring_info);
+    printf("\tResult: \n"); 
+    Matrix_Print(matrix_res, ring_info);
+    free(scalar->scalar);
+    free(scalar);
+
+    printf("\nTest Double of type.\n");
+    ring_info_f;
+
+    printf("Test 1.\n");
+    Free_Matrix(matrix_1);
+    matrix_1 = Get_Matrix_One(5, 4, ring_info, error);
+    ERROR_OK;
+    scalar = (LineComb*)malloc(sizeof(LineComb));
+    scalar->scalar = (void*)malloc(sizeof(double)*4);
+    scalar->scalar_number = 0;
+    for (int i = 0; i < 4; i++){
+        ((double*)scalar->scalar)[i] = 1;
+    }
+    
+    Free_Matrix(matrix_res);
+    matrix_res = ring_info->Line_Comb(matrix_1, scalar, error);
+    ERROR_OK;
+
+    printf("\tMatrix 1: \n");
+    Matrix_Print(matrix_1, ring_info);
+    printf("\tResult: \n"); 
+    Matrix_Print(matrix_res, ring_info);
+    free(scalar->scalar);
+    free(scalar);
+
+    printf("Test 2.\n");
+    Free_Matrix(matrix_1);
+    matrix_1 = Get_Matrix_One(5, 4, ring_info, error);
+    ERROR_OK;
+    scalar = (LineComb*)malloc(sizeof(LineComb));
+    scalar->scalar = (void*)malloc(sizeof(double)*4);
+    scalar->scalar_number = 2;
+    for (int i = 0; i < 4; i++){
+        ((double*)scalar->scalar)[i] = 10;
+    }
+    
+    Free_Matrix(matrix_res);
+    matrix_res = ring_info->Line_Comb(matrix_1, scalar, error);
+    ERROR_OK;
+
+    printf("\tMatrix 1: \n");
+    Matrix_Print(matrix_1, ring_info);
+    printf("\tResult: \n"); 
+    Matrix_Print(matrix_res, ring_info);
+    free(scalar->scalar);
+    free(scalar);
+
+    printf("Test 3.\n");
+    Free_Matrix(matrix_1);
+    matrix_1 = Get_Matrix_One(5, 4, ring_info, error);
+    ERROR_OK;
+    scalar = (LineComb*)malloc(sizeof(LineComb));
+    scalar->scalar = (void*)malloc(sizeof(double)*4);
+    scalar->scalar_number = 3;
+    for (int i = 0; i < 4; i++){
+        ((double*)scalar->scalar)[i] = -1;
+    }
+    
+    Free_Matrix(matrix_res);
+    matrix_res = ring_info->Line_Comb(matrix_1, scalar, error);
+    ERROR_OK;
+
+    printf("\tMatrix 1: \n");
+    Matrix_Print(matrix_1, ring_info);
+    printf("\tResult: \n"); 
+    Matrix_Print(matrix_res, ring_info);
+    free(scalar->scalar);
+    free(scalar);
+
     return 0;   
 }
