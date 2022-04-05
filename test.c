@@ -23,154 +23,165 @@ int main () {
     //Sum matrix
     printf("______________________________________________________________________________\n");
     printf("Sum matrix.\n");
-    printf("Int\n");
+    printf("Test Int of type.\n");
     char type = 'I';
     ring_info = Create(type, Sum_Matrix_I, Mult_Matrix_I, Mult_Matrix_by_Scalar_I, Transp_Matrix_I, Line_Comb_I, error);
     ERROR_OK;
 
-    matrix_1 = Get_Matrix_Zero(10, 5, ring_info, error);
+    printf("Test 1.\n");
+    matrix_1 = Get_Matrix_Zero(5, 4, ring_info, error);
     ERROR_OK;
-    matrix_2 = Get_Matrix_Random(10, 5, ring_info, error);
+    matrix_2 = Get_Matrix_Random(5, 4, ring_info, error);
     ERROR_OK;
     matrix_res = ring_info->Sum_Matrix(matrix_1, matrix_2, error);
     ERROR_OK;
 
-    printf("Matrix 1: \n");
+    printf("\tMatrix 1: \n");
     Matrix_Print(matrix_1, ring_info);
-    printf("Matrix 2: \n");
+    printf("\tMatrix 2: \n");
     Matrix_Print(matrix_2, ring_info);
-    printf("Result: \n"); 
+    printf("\tResult: \n"); 
     Matrix_Print(matrix_res, ring_info);
 
+    printf("Test 2.\n");
     Free_Matrix(matrix_1);
-    matrix_1 = Get_Matrix_Random(10, 5, ring_info, error);
+    matrix_1 = Get_Matrix_Random(5, 4, ring_info, error);
     ERROR_OK;
     Free_Matrix(matrix_2);
-    matrix_2 = Get_Matrix_Random(10, 5, ring_info, error);
+    matrix_2 = Get_Matrix_Random(5, 4, ring_info, error);
     ERROR_OK;
     Free_Matrix(matrix_res);
     matrix_res = ring_info->Sum_Matrix(matrix_1, matrix_2, error);
     ERROR_OK;
 
-    printf("Matrix 1: \n");
+    printf("\tMatrix 1: \n");
     Matrix_Print(matrix_1, ring_info);
-    printf("Matrix 2: \n");
+    printf("\tMatrix 2: \n");
     Matrix_Print(matrix_2, ring_info);
-    printf("Result: \n"); 
+    printf("\tResult: \n"); 
     Matrix_Print(matrix_res, ring_info);
 
-    printf("Double\n");
+    printf("Test Double of type.\n");
     type = 'F';
     ring_info = Create(type, Sum_Matrix_I, Mult_Matrix_I, Mult_Matrix_by_Scalar_I, Transp_Matrix_I, Line_Comb_I, error);
     ERROR_OK;
-
-    matrix_1 = Get_Matrix_Zero(10, 5, ring_info, error);
+    
+    printf("Test 1.\n");
+    matrix_1 = Get_Matrix_Zero(5, 4, ring_info, error);
     ERROR_OK;
-    matrix_2 = Get_Matrix_Random(10, 5, ring_info, error);
+    matrix_2 = Get_Matrix_Random(5, 4, ring_info, error);
     ERROR_OK;
     matrix_res = ring_info->Sum_Matrix(matrix_1, matrix_2, error);
     ERROR_OK;
 
-    printf("Matrix 1: \n");
+    printf("\tMatrix 1: \n");
     Matrix_Print(matrix_1, ring_info);
-    printf("Matrix 2: \n");
+    printf("\tMatrix 2: \n");
     Matrix_Print(matrix_2, ring_info);
-    printf("Result: \n"); 
+    printf("\tResult: \n"); 
     Matrix_Print(matrix_res, ring_info);
 
+    printf("Test 2.\n");
     Free_Matrix(matrix_1);
-    matrix_1 = Get_Matrix_Random(10, 5, ring_info, error);
+    matrix_1 = Get_Matrix_Random(5, 4, ring_info, error);
     ERROR_OK;
     Free_Matrix(matrix_2);
-    matrix_2 = Get_Matrix_Random(10, 5, ring_info, error);
+    matrix_2 = Get_Matrix_Random(5, 4, ring_info, error);
     ERROR_OK;
     Free_Matrix(matrix_res);
     matrix_res = ring_info->Sum_Matrix(matrix_1, matrix_2, error);
     ERROR_OK;
 
-    printf("Matrix 1: \n");
+    printf("\tMatrix 1: \n");
     Matrix_Print(matrix_1, ring_info);
-    printf("Matrix 2: \n");
+    printf("\tMatrix 2: \n");
     Matrix_Print(matrix_2, ring_info);
-    printf("Result: \n"); 
+    printf("\tResult: \n"); 
     Matrix_Print(matrix_res, ring_info);
 
     //Mult Matrix
     printf("______________________________________________________________________________\n");
     printf("Mult matrix.\n");
-    printf("Int\n");
-    type = 'F';
+    printf("Test Int of type.\n");
+    type = 'I';
     ring_info = Create(type, Sum_Matrix_I, Mult_Matrix_I, Mult_Matrix_by_Scalar_I, Transp_Matrix_I, Line_Comb_I, error);
     ERROR_OK;
 
-    matrix_1 = Get_Matrix_One(10, 5, ring_info, error);
+    printf("Test 1.\n");
+    matrix_1 = Get_Matrix_One(5, 4, ring_info, error);
     ERROR_OK;
-    matrix_2 = Get_Matrix_Random(5, 4, ring_info, error);
+    matrix_2 = Get_Matrix_Random(4, 3, ring_info, error);
     ERROR_OK;
     matrix_res = ring_info->Mult_Matrix(matrix_1, matrix_2, error);
     ERROR_OK;
 
-    printf("Matrix 1: \n");
+    printf("\tMatrix 1: \n");
     Matrix_Print(matrix_1, ring_info);
-    printf("Matrix 2: \n");
+    printf("\tMatrix 2: \n");
     Matrix_Print(matrix_2, ring_info);
-    printf("Result: \n"); 
+    printf("\tResult: \n"); 
     Matrix_Print(matrix_res, ring_info);
 
+    printf("Test 2.\n");
     Free_Matrix(matrix_1);
-    matrix_1 = Get_Matrix_Random(10, 5, ring_info, error);
+    matrix_1 = Get_Matrix_Random(5, 4, ring_info, error);
     ERROR_OK;
     Free_Matrix(matrix_2);
-    matrix_2 = Get_Matrix_Random(5, 4, ring_info, error);
+    matrix_2 = Get_Matrix_Random(4, 3, ring_info, error);
     ERROR_OK;
     Free_Matrix(matrix_res);
     matrix_res = ring_info->Mult_Matrix(matrix_1, matrix_2, error);
     ERROR_OK;
 
-    printf("Matrix 1: \n");
+    printf("\tMatrix 1: \n");
     Matrix_Print(matrix_1, ring_info);
-    printf("Matrix 2: \n");
+    printf("\tMatrix 2: \n");
     Matrix_Print(matrix_2, ring_info);
-    printf("Result: \n"); 
+    printf("\tResult: \n"); 
     Matrix_Print(matrix_res, ring_info);
 
-    printf("Double\n");
+    printf("Test Double of type.\n");
     type = 'F';
     ring_info = Create(type, Sum_Matrix_I, Mult_Matrix_I, Mult_Matrix_by_Scalar_I, Transp_Matrix_I, Line_Comb_I, error);
     ERROR_OK;
 
-    matrix_1 = Get_Matrix_One(10, 5, ring_info, error);
+    printf("Test 1.\n");
+    matrix_1 = Get_Matrix_One(5, 4, ring_info, error);
     ERROR_OK;
-    matrix_2 = Get_Matrix_Random(5, 4, ring_info, error);
+    matrix_2 = Get_Matrix_Random(4, 3, ring_info, error);
     ERROR_OK;
     matrix_res = ring_info->Mult_Matrix(matrix_1, matrix_2, error);
     ERROR_OK;
 
-    printf("Matrix 1: \n");
+    printf("\tMatrix 1: \n");
     Matrix_Print(matrix_1, ring_info);
-    printf("Matrix 2: \n");
+    printf("\tMatrix 2: \n");
     Matrix_Print(matrix_2, ring_info);
-    printf("Result: \n"); 
+    printf("\tResult: \n"); 
     Matrix_Print(matrix_res, ring_info);
 
+    printf("Test 2.\n");
     Free_Matrix(matrix_1);
-    matrix_1 = Get_Matrix_Random(10, 5, ring_info, error);
+    matrix_1 = Get_Matrix_Random(5, 4, ring_info, error);
     ERROR_OK;
     Free_Matrix(matrix_2);
-    matrix_2 = Get_Matrix_Random(5, 4, ring_info, error);
+    matrix_2 = Get_Matrix_Random(4, 3, ring_info, error);
     ERROR_OK;
     Free_Matrix(matrix_res);
     matrix_res = ring_info->Mult_Matrix(matrix_1, matrix_2, error);
     ERROR_OK;
 
-    printf("Matrix 1: \n");
+    printf("\tMatrix 1: \n");
     Matrix_Print(matrix_1, ring_info);
-    printf("Matrix 2: \n");
+    printf("\tMatrix 2: \n");
     Matrix_Print(matrix_2, ring_info);
-    printf("Result: \n"); 
+    printf("\tResult: \n"); 
     Matrix_Print(matrix_res, ring_info);
 
-
+    // Mult Matrix by Scalar
+    printf("______________________________________________________________________________\n");
+    printf("Mult Matrix by Scalar.\n");
+    printf("Test Int of type.\n");
 
 
 

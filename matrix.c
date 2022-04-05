@@ -316,7 +316,7 @@ void Matrix_Print (void* matrix, RingInfo* ring_info) {
         Matrix* i_matrix = (Matrix*)matrix;
         for (int i = 0; i < i_matrix->line; i++){
             for (int j = 0; j < i_matrix->column; j++) {
-                printf("%d \t \t", ((int**)i_matrix->array)[i][j]);
+                printf("%d \t", ((int**)i_matrix->array)[i][j]);
             }
             printf("\n");
         }
@@ -324,7 +324,7 @@ void Matrix_Print (void* matrix, RingInfo* ring_info) {
         Matrix* f_matrix = (Matrix*)matrix;
         for (int i = 0; i < f_matrix->line; i++){
             for (int j = 0; j < f_matrix->column; j++) {
-                printf("%lf \t \t", ((double**)f_matrix->array)[i][j]);
+                printf("%lf \t", ((double**)f_matrix->array)[i][j]);
             }
             printf("\n");
         }
