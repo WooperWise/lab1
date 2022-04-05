@@ -143,7 +143,7 @@ void* Sum_Matrix_F(void* matrix_1, void* matrix_2, size_t* error) {
     }
     for (int i = 0; i < res->line; i++) { 
         for (int j = 0; j < res->column; j++) { 
-            ((double**)res->array)[i][j] = 0;
+            ((double**)res->array)[i][j] = 0.0;
             ((double**)res->array)[i][j] = ((double**)f_matrix_1->array)[i][j] + ((double**)f_matrix_2->array)[i][j];
         } 
     }

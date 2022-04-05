@@ -22,8 +22,8 @@ int main () {
 
     //Sum matrix
     printf("______________________________________________________________________________\n");
-    printf("Sum matrix.\n");
-    printf("Test Int of type.\n");
+    printf("\nSum matrix.\n");
+    printf("\nTest Int of type.\n");
     char type = 'I';
     ring_info = Create(type, Sum_Matrix_I, Mult_Matrix_I, Mult_Matrix_by_Scalar_I, Transp_Matrix_I, Line_Comb_I, error);
     ERROR_OK;
@@ -61,9 +61,10 @@ int main () {
     printf("\tResult: \n"); 
     Matrix_Print(matrix_res, ring_info);
 
-    printf("Test Double of type.\n");
+    printf("\nTest Double of type.\n");
     type = 'F';
-    ring_info = Create(type, Sum_Matrix_I, Mult_Matrix_I, Mult_Matrix_by_Scalar_I, Transp_Matrix_I, Line_Comb_I, error);
+    free(ring_info);
+    ring_info = Create(type, Sum_Matrix_F, Mult_Matrix_F, Mult_Matrix_by_Scalar_F, Transp_Matrix_F, Line_Comb_F, error);
     ERROR_OK;
     
     printf("Test 1.\n");
@@ -101,9 +102,10 @@ int main () {
 
     //Mult Matrix
     printf("______________________________________________________________________________\n");
-    printf("Mult matrix.\n");
-    printf("Test Int of type.\n");
+    printf("\nMult matrix.\n");
+    printf("\nTest Int of type.\n");
     type = 'I';
+    free(ring_info);
     ring_info = Create(type, Sum_Matrix_I, Mult_Matrix_I, Mult_Matrix_by_Scalar_I, Transp_Matrix_I, Line_Comb_I, error);
     ERROR_OK;
 
@@ -140,9 +142,10 @@ int main () {
     printf("\tResult: \n"); 
     Matrix_Print(matrix_res, ring_info);
 
-    printf("Test Double of type.\n");
+    printf("\nTest Double of type.\n");
     type = 'F';
-    ring_info = Create(type, Sum_Matrix_I, Mult_Matrix_I, Mult_Matrix_by_Scalar_I, Transp_Matrix_I, Line_Comb_I, error);
+    free(ring_info);
+    ring_info = Create(type, Sum_Matrix_F, Mult_Matrix_F, Mult_Matrix_by_Scalar_F, Transp_Matrix_F, Line_Comb_F, error);
     ERROR_OK;
 
     printf("Test 1.\n");
