@@ -1,463 +1,143 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <sys/types.h>
-#include <time.h>
-
-#include "matrix.h"
-#include "print.h"
-
-#define Type_Error {if (type != 'I' && type != 'F') ErrorMessange(null_type);}
-#define ring_info_i {char type = 'I';\
-        free(ring_info);\
-        ring_info = Create(type, Sum_Matrix_I, Mult_Matrix_I, Mult_Matrix_by_Scalar_I, Transp_Matrix_I, Line_Comb_I, error);\
-        ERROR_OK;}
-#define ring_info_f {type = 'F';\
-        free(ring_info);\
-        ring_info = Create(type, Sum_Matrix_F, Mult_Matrix_F, Mult_Matrix_by_Scalar_F, Transp_Matrix_F, Line_Comb_F, error);\
-        ERROR_OK;}
+#include "testfun.h"
 
 int main () {
     size_t exit = 1;
-
-    Matrix* matrix_1 = NULL;
-    Matrix* matrix_2 = NULL;
-    Matrix* matrix_res = NULL;
-    RingInfo* ring_info = NULL;  
-    size_t* error = (size_t*)malloc(sizeof(size_t));
-    *error = 0;
-
-    srand(time(NULL));
-     
+    char type = 'I';
+    size_t* error = 0;
+    RingInfo* ring_info = Create(type, Sum_Matrix_I, Mult_Matrix_I, Mult_Matrix_by_Scalar_I, Transp_Matrix_I, Line_Comb_I, error);
 
     //Sum matrix
     printf("______________________________________________________________________________\n");
     printf("\nSum matrix.\n");
-    printf("\nTest Int of type.\n");
-    char type = 'I';
-    ring_info = Create(type, Sum_Matrix_I, Mult_Matrix_I, Mult_Matrix_by_Scalar_I, Transp_Matrix_I, Line_Comb_I, error);
-    ERROR_OK;
 
-    printf("Test 1.\n");
-    matrix_1 = Get_Matrix_Zero(5, 4, ring_info, error);
-    ERROR_OK;
-    matrix_2 = Get_Matrix_Random(5, 4, ring_info, error);
-    ERROR_OK;
-    matrix_res = ring_info->Sum_Matrix(matrix_1, matrix_2, error);
-    ERROR_OK;
-
-    printf("\tMatrix 1: \n");
-    Matrix_Print(matrix_1, ring_info);
-    printf("\tMatrix 2: \n");
-    Matrix_Print(matrix_2, ring_info);
-    printf("\tResult: \n"); 
-    Matrix_Print(matrix_res, ring_info);
-
-    printf("Test 2.\n");
-    Free_Matrix(matrix_1);
-    matrix_1 = Get_Matrix_Random(5, 4, ring_info, error);
-    ERROR_OK;
-    Free_Matrix(matrix_2);
-    matrix_2 = Get_Matrix_Random(5, 4, ring_info, error);
-    ERROR_OK;
-    Free_Matrix(matrix_res);
-    matrix_res = ring_info->Sum_Matrix(matrix_1, matrix_2, error);
-    ERROR_OK;
-
-    printf("\tMatrix 1: \n");
-    Matrix_Print(matrix_1, ring_info);
-    printf("\tMatrix 2: \n");
-    Matrix_Print(matrix_2, ring_info);
-    printf("\tResult: \n"); 
-    Matrix_Print(matrix_res, ring_info);
-
-    printf("\nTest Double of type.\n");
+    sum_test_1(&exit, ring_info, error);
+    OK(1);
+    printf("Test 1: OK.\n");
+  
+    sum_test_2(&exit, ring_info, error);
+    OK(2);
+    printf("Test 2: OK.\n");
+    
     ring_info_f;
     
-    printf("Test 1.\n");
-    matrix_1 = Get_Matrix_Zero(5, 4, ring_info, error);
-    ERROR_OK;
-    matrix_2 = Get_Matrix_Random(5, 4, ring_info, error);
-    ERROR_OK;
-    matrix_res = ring_info->Sum_Matrix(matrix_1, matrix_2, error);
-    ERROR_OK;
+    sum_test_3(&exit, ring_info, error);
+    OK(3);
+    printf("Test 3: OK.\n");
 
-    printf("\tMatrix 1: \n");
-    Matrix_Print(matrix_1, ring_info);
-    printf("\tMatrix 2: \n");
-    Matrix_Print(matrix_2, ring_info);
-    printf("\tResult: \n"); 
-    Matrix_Print(matrix_res, ring_info);
-
-    printf("Test 2.\n");
-    Free_Matrix(matrix_1);
-    matrix_1 = Get_Matrix_Random(5, 4, ring_info, error);
-    ERROR_OK;
-    Free_Matrix(matrix_2);
-    matrix_2 = Get_Matrix_Random(5, 4, ring_info, error);
-    ERROR_OK;
-    Free_Matrix(matrix_res);
-    matrix_res = ring_info->Sum_Matrix(matrix_1, matrix_2, error);
-    ERROR_OK;
-
-    printf("\tMatrix 1: \n");
-    Matrix_Print(matrix_1, ring_info);
-    printf("\tMatrix 2: \n");
-    Matrix_Print(matrix_2, ring_info);
-    printf("\tResult: \n"); 
-    Matrix_Print(matrix_res, ring_info);
+    sum_test_4(&exit, ring_info, error);
+    OK(4);
+    printf("Test 4: OK.\n");
 
     //Mult Matrix
     printf("______________________________________________________________________________\n");
     printf("\nMult matrix.\n");
-    printf("\nTest Int of type.\n");
     ring_info_i;
 
-    printf("Test 1.\n");
-    matrix_1 = Get_Matrix_One(5, 4, ring_info, error);
-    ERROR_OK;
-    matrix_2 = Get_Matrix_Random(4, 3, ring_info, error);
-    ERROR_OK;
-    matrix_res = ring_info->Mult_Matrix(matrix_1, matrix_2, error);
-    ERROR_OK;
+    mult_test_5(&exit, ring_info, error);
+    OK(5);
+    printf("Test 5: OK.\n");
 
-    printf("\tMatrix 1: \n");
-    Matrix_Print(matrix_1, ring_info);
-    printf("\tMatrix 2: \n");
-    Matrix_Print(matrix_2, ring_info);
-    printf("\tResult: \n"); 
-    Matrix_Print(matrix_res, ring_info);
+    mult_test_6(&exit, ring_info, error);
+    OK(6);
+    printf("Test 6: OK.\n");
 
-    printf("Test 2.\n");
-    Free_Matrix(matrix_1);
-    matrix_1 = Get_Matrix_Random(5, 4, ring_info, error);
-    ERROR_OK;
-    Free_Matrix(matrix_2);
-    matrix_2 = Get_Matrix_Random(4, 3, ring_info, error);
-    ERROR_OK;
-    Free_Matrix(matrix_res);
-    matrix_res = ring_info->Mult_Matrix(matrix_1, matrix_2, error);
-    ERROR_OK;
-
-    printf("\tMatrix 1: \n");
-    Matrix_Print(matrix_1, ring_info);
-    printf("\tMatrix 2: \n");
-    Matrix_Print(matrix_2, ring_info);
-    printf("\tResult: \n"); 
-    Matrix_Print(matrix_res, ring_info);
-
-    printf("\nTest Double of type.\n");
     ring_info_f;
 
-    printf("Test 1.\n");
-    matrix_1 = Get_Matrix_One(5, 4, ring_info, error);
-    ERROR_OK;
-    matrix_2 = Get_Matrix_Random(4, 3, ring_info, error);
-    ERROR_OK;
-    matrix_res = ring_info->Mult_Matrix(matrix_1, matrix_2, error);
-    ERROR_OK;
-
-    printf("\tMatrix 1: \n");
-    Matrix_Print(matrix_1, ring_info);
-    printf("\tMatrix 2: \n");
-    Matrix_Print(matrix_2, ring_info);
-    printf("\tResult: \n"); 
-    Matrix_Print(matrix_res, ring_info);
-
-    printf("Test 2.\n");
-    Free_Matrix(matrix_1);
-    matrix_1 = Get_Matrix_Random(5, 4, ring_info, error);
-    ERROR_OK;
-    Free_Matrix(matrix_2);
-    matrix_2 = Get_Matrix_Random(4, 3, ring_info, error);
-    ERROR_OK;
-    Free_Matrix(matrix_res);
-    matrix_res = ring_info->Mult_Matrix(matrix_1, matrix_2, error);
-    ERROR_OK;
-
-    printf("\tMatrix 1: \n");
-    Matrix_Print(matrix_1, ring_info);
-    printf("\tMatrix 2: \n");
-    Matrix_Print(matrix_2, ring_info);
-    printf("\tResult: \n"); 
-    Matrix_Print(matrix_res, ring_info);
-
+    mult_test_7(&exit, ring_info, error);
+    OK(7);
+    printf("Test 7: OK.\n");
+    
+    mult_test_8(&exit, ring_info, error);
+    OK(8);
+    printf("Test 8: OK.\n");
+    
     // Mult Matrix by Scalar
     printf("______________________________________________________________________________\n");
     printf("\nMult Matrix by Scalar.\n");
-    printf("\nTest Int of type.\n");
     ring_info_i;
-
-    printf("Test 1.\n");
-    int scalar_i = 0;
-    Free_Matrix(matrix_1);
-    matrix_1 = Get_Matrix_Random(5, 4, ring_info, error);
-    ERROR_OK;
-    matrix_1 = ring_info->Mult_Matrix_by_Scalar(matrix_1, ((void*)&scalar_i), error);
-    ERROR_OK;
-
-    printf("\tMatrix 1: \n");
-    Matrix_Print(matrix_1, ring_info);
-
-    printf("Test 2.\n");
-    scalar_i = 10;
-    Free_Matrix(matrix_1);
-    matrix_1 = Get_Matrix_Random(5, 4, ring_info, error);
-    ERROR_OK;
-    matrix_1 = ring_info->Mult_Matrix_by_Scalar(matrix_1, ((void*)&scalar_i), error);
-    ERROR_OK; 
     
-    printf("\tMatrix 1: \n");
-    Matrix_Print(matrix_1, ring_info);
+    mult_by_scalar_test_9(&exit, ring_info, error);
+    OK(9);
+    printf("Test 9: OK.\n");
 
-    printf("Test 3.\n");
-    scalar_i = -1;
-    Free_Matrix(matrix_1);
-    matrix_1 = Get_Matrix_Random(5, 4, ring_info, error);
-    ERROR_OK;
-    matrix_1 = ring_info->Mult_Matrix_by_Scalar(matrix_1, ((void*)&scalar_i), error);
-    ERROR_OK; 
-    
-    printf("\tMatrix 1: \n");
-    Matrix_Print(matrix_1, ring_info);
+   mult_by_scalar_test_10(&exit, ring_info, error);
+    OK(10);
+    printf("Test 10: OK.\n");
 
-    printf("\nTest Double of type.\n");
+    mult_by_scalar_test_11(&exit, ring_info, error);
+    OK(11);
+    printf("Test 11: OK.\n");
+
     ring_info_f;
 
-    printf("Test 1.\n");
-    double scalar_f = 0;
-    Free_Matrix(matrix_1);
-    matrix_1 = Get_Matrix_Random(5, 4, ring_info, error);
-    ERROR_OK;
-    matrix_1 = ring_info->Mult_Matrix_by_Scalar(matrix_1, ((void*)&scalar_f), error);
-    ERROR_OK; 
-    
-    printf("\tMatrix 1: \n");
-    Matrix_Print(matrix_1, ring_info);
+    mult_by_scalar_test_12(&exit, ring_info, error);
+    OK(12);
+    printf("Test 12: OK.\n");
 
-    printf("Test 2.\n");
-    scalar_f = 10;
-    Free_Matrix(matrix_1);
-    matrix_1 = Get_Matrix_Random(5, 4, ring_info, error);
-    ERROR_OK;
-    matrix_1 = ring_info->Mult_Matrix_by_Scalar(matrix_1, ((void*)&scalar_f), error);
-    ERROR_OK; 
-    
-    printf("\tMatrix 1: \n");
-    Matrix_Print(matrix_1, ring_info);
+    mult_by_scalar_test_13(&exit, ring_info, error);
+    OK(13);
+    printf("Test 13: OK.\n");
 
-    printf("Test 3.\n");
-    scalar_f = -1;
-    Free_Matrix(matrix_1);
-    matrix_1 = Get_Matrix_Random(5, 4, ring_info, error);
-    ERROR_OK;
-    matrix_1 = ring_info->Mult_Matrix_by_Scalar(matrix_1, ((void*)&scalar_f), error);
-    ERROR_OK; 
-    
-    printf("\tMatrix 1: \n");
-    Matrix_Print(matrix_1, ring_info);
+    mult_by_scalar_test_14(&exit, ring_info, error);
+    OK(14);
+    printf("Test 14: OK.\n");
 
     // Transp Matrix
     printf("______________________________________________________________________________\n");
     printf("\nTransp Matrix.\n");
-    printf("\nTest Int of type.\n");
     ring_info_i;
 
-    printf("Test 1.\n");
-    Free_Matrix(matrix_1);
-    matrix_1 = Get_Matrix_One(5, 4, ring_info, error);
-    ERROR_OK;
-    Free_Matrix(matrix_res);
-    matrix_res = ring_info->Transp_Matrix(matrix_1, error);
-    ERROR_OK;
+    transp_test_15(&exit, ring_info, error);
+    OK(15);
+    printf("Test 15: OK.\n");
 
-    printf("\tMatrix 1: \n");
-    Matrix_Print(matrix_1, ring_info);
-    printf("\tResult: \n"); 
-    Matrix_Print(matrix_res, ring_info);
+    transp_test_16(&exit, ring_info, error);
+    OK(16);
+    printf("Test 16: OK.\n");
 
-    printf("Test 2.\n");
-    Free_Matrix(matrix_1);
-    matrix_1 = Get_Matrix_Random(5, 4, ring_info, error);
-    ERROR_OK;
-    Free_Matrix(matrix_res);
-    matrix_res = ring_info->Transp_Matrix(matrix_1, error);
-    ERROR_OK;
-
-    printf("\tMatrix 1: \n");
-    Matrix_Print(matrix_1, ring_info);
-    printf("\tResult: \n"); 
-    Matrix_Print(matrix_res, ring_info);
-
-    printf("\nTest Double of type.\n");
     ring_info_f;
 
-    printf("Test 1.\n");
-    Free_Matrix(matrix_1);
-    matrix_1 = Get_Matrix_One(5, 4, ring_info, error);
-    ERROR_OK;
-    Free_Matrix(matrix_res);
-    matrix_res = ring_info->Transp_Matrix(matrix_1, error);
-    ERROR_OK;
+    transp_test_17(&exit, ring_info, error);
+    OK(17);
+    printf("Test 17: OK.\n");
 
-    printf("\tMatrix 1: \n");
-    Matrix_Print(matrix_1, ring_info);
-    printf("\tResult: \n"); 
-    Matrix_Print(matrix_res, ring_info);
-
-    printf("Test 2.\n");
-    Free_Matrix(matrix_1);
-    matrix_1 = Get_Matrix_Random(5, 4, ring_info, error);
-    ERROR_OK;
-    Free_Matrix(matrix_res);
-    matrix_res = ring_info->Transp_Matrix(matrix_1, error);
-    ERROR_OK;
-
-    printf("\tMatrix 1: \n");
-    Matrix_Print(matrix_1, ring_info);
-    printf("\tResult: \n"); 
-    Matrix_Print(matrix_res, ring_info);
+    transp_test_18(&exit, ring_info, error);
+    OK(18);
+    printf("Test 18: OK.\n");
 
     // Line_Comb
     printf("______________________________________________________________________________\n");
     printf("\nLine Comb.\n");
-    printf("\nTest Int of type.\n");
     ring_info_i;
-    
-    printf("Test 1.\n");
-    Free_Matrix(matrix_1);
-    matrix_1 = Get_Matrix_One(5, 4, ring_info, error);
-    ERROR_OK;
-    LineComb* scalar;
-    scalar = (LineComb*)malloc(sizeof(LineComb));
-    scalar->scalar = (void*)malloc(sizeof(int)*4);
-    scalar->scalar_number = 0;
-    for (int i = 0; i < 4; i++){
-        ((int*)scalar->scalar)[i] = 1;
-    }
-    
-    Free_Matrix(matrix_res);
-    matrix_res = ring_info->Line_Comb(matrix_1, scalar, error);
-    ERROR_OK;
 
-    printf("\tMatrix 1: \n");
-    Matrix_Print(matrix_1, ring_info);
-    printf("\tResult: \n"); 
-    Matrix_Print(matrix_res, ring_info);
-    free(scalar->scalar);
-    free(scalar);
+    line_comb_test_19(&exit, ring_info, error);
+    OK(19);
+    printf("Test 19: OK.\n");
 
-    printf("Test 2.\n");
-    Free_Matrix(matrix_1);
-    matrix_1 = Get_Matrix_One(5, 4, ring_info, error);
-    ERROR_OK;
-    scalar = (LineComb*)malloc(sizeof(LineComb));
-    scalar->scalar = (void*)malloc(sizeof(int)*4);
-    scalar->scalar_number = 1;
-    for (int i = 0; i < 4; i++){
-        ((int*)scalar->scalar)[i] = 10;
-    }
-    
-    Free_Matrix(matrix_res);
-    matrix_res = ring_info->Line_Comb(matrix_1, scalar, error);
-    ERROR_OK;
+    line_comb_test_20(&exit, ring_info, error);
+    OK(20);
+    printf("Test 20: OK.\n");
 
-    printf("\tMatrix 1: \n");
-    Matrix_Print(matrix_1, ring_info);
-    printf("\tResult: \n"); 
-    Matrix_Print(matrix_res, ring_info);
-    free(scalar->scalar);
-    free(scalar);
+    line_comb_test_21(&exit, ring_info, error);
+    OK(21);
+    printf("Test 21: OK.\n");
 
-    printf("Test 3.\n");
-    Free_Matrix(matrix_1);
-    matrix_1 = Get_Matrix_One(5, 4, ring_info, error);
-    ERROR_OK;
-    scalar = (LineComb*)malloc(sizeof(LineComb));
-    scalar->scalar = (void*)malloc(sizeof(int)*4);
-    scalar->scalar_number = 3;
-    for (int i = 0; i < 4; i++){
-        ((int*)scalar->scalar)[i] = -1;
-    }
-    
-    Free_Matrix(matrix_res);
-    matrix_res = ring_info->Line_Comb(matrix_1, scalar, error);
-    ERROR_OK;
-
-    printf("\tMatrix 1: \n");
-    Matrix_Print(matrix_1, ring_info);
-    printf("\tResult: \n"); 
-    Matrix_Print(matrix_res, ring_info);
-    free(scalar->scalar);
-    free(scalar);
-
-    printf("\nTest Double of type.\n");
     ring_info_f;
 
-    printf("Test 1.\n");
-    Free_Matrix(matrix_1);
-    matrix_1 = Get_Matrix_One(5, 4, ring_info, error);
-    ERROR_OK;
-    scalar = (LineComb*)malloc(sizeof(LineComb));
-    scalar->scalar = (void*)malloc(sizeof(double)*4);
-    scalar->scalar_number = 0;
-    for (int i = 0; i < 4; i++){
-        ((double*)scalar->scalar)[i] = 1;
-    }
-    
-    Free_Matrix(matrix_res);
-    matrix_res = ring_info->Line_Comb(matrix_1, scalar, error);
-    ERROR_OK;
+    line_comb_test_22(&exit, ring_info, error);
+    OK(22);
+    printf("Test 22: OK.\n");
 
-    printf("\tMatrix 1: \n");
-    Matrix_Print(matrix_1, ring_info);
-    printf("\tResult: \n"); 
-    Matrix_Print(matrix_res, ring_info);
-    free(scalar->scalar);
-    free(scalar);
+    line_comb_test_23(&exit, ring_info, error);
+    OK(23);
+    printf("Test 23: OK.\n");
 
-    printf("Test 2.\n");
-    Free_Matrix(matrix_1);
-    matrix_1 = Get_Matrix_One(5, 4, ring_info, error);
-    ERROR_OK;
-    scalar = (LineComb*)malloc(sizeof(LineComb));
-    scalar->scalar = (void*)malloc(sizeof(double)*4);
-    scalar->scalar_number = 2;
-    for (int i = 0; i < 4; i++){
-        ((double*)scalar->scalar)[i] = 10;
-    }
-    
-    Free_Matrix(matrix_res);
-    matrix_res = ring_info->Line_Comb(matrix_1, scalar, error);
-    ERROR_OK;
+    line_comb_test_24(&exit, ring_info, error);
+    OK(24);
+    printf("Test 24: OK.\n");
 
-    printf("\tMatrix 1: \n");
-    Matrix_Print(matrix_1, ring_info);
-    printf("\tResult: \n"); 
-    Matrix_Print(matrix_res, ring_info);
-    free(scalar->scalar);
-    free(scalar);
-
-    printf("Test 3.\n");
-    Free_Matrix(matrix_1);
-    matrix_1 = Get_Matrix_One(5, 4, ring_info, error);
-    ERROR_OK;
-    scalar = (LineComb*)malloc(sizeof(LineComb));
-    scalar->scalar = (void*)malloc(sizeof(double)*4);
-    scalar->scalar_number = 3;
-    for (int i = 0; i < 4; i++){
-        ((double*)scalar->scalar)[i] = -1;
-    }
-    
-    Free_Matrix(matrix_res);
-    matrix_res = ring_info->Line_Comb(matrix_1, scalar, error);
-    ERROR_OK;
-
-    printf("\tMatrix 1: \n");
-    Matrix_Print(matrix_1, ring_info);
-    printf("\tResult: \n"); 
-    Matrix_Print(matrix_res, ring_info);
-    free(scalar->scalar);
-    free(scalar);
-
-    return 0;   
+    return 0;
 }
+    

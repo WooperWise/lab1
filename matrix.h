@@ -58,5 +58,3 @@ void* Transp_Matrix_F (void* matrix, size_t* error);
 void* Line_Comb_I (void* matrix, LineComb* scalar, size_t* error);
 void* Line_Comb_F (void* matrix, LineComb* scalar, size_t* error);
 void Matrix_Print (void* matrix, RingInfo* ring_info);
-void* Get_Matrix_One (size_t line, size_t column, RingInfo* ring_info, size_t* error);
-void* Get_Matrix_Zero (size_t line, size_t column, RingInfo* ring_info, size_t* error);
